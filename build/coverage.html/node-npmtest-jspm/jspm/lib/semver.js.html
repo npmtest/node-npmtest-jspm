@@ -1,0 +1,860 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for node-npmtest-jspm/jspm/lib/semver.js</title>
+    <meta charset="utf-8">
+    <style>
+        body, html {
+            margin:0; padding: 0;
+        }
+        body {
+            font-family: Arial, Helvetica;
+            font-size: 10pt;
+        }
+        div.header, div.footer {
+            background: #eee;
+            padding: 1em;
+        }
+        div.header {
+            height: 160px;
+            padding: 0 1em 0 1em;
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            border-bottom: 1px solid #666;
+            width: 100%;
+        }
+        div.footer {
+            border-top: 1px solid #666;
+        }
+        div.body {
+            margin-top: 170px;
+        }
+        div.meta {
+            font-size: 90%;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            font-weight: normal;
+        }
+        h1 {
+            font-size: 12pt;
+        }
+        h2 {
+            font-size: 10pt;
+        }
+        pre {
+            font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            tab-size: 2;
+        }
+
+        div.path { font-size: 110%; }
+        div.path a:link, div.path a:visited { color: #000; }
+        table.coverage { border-collapse: collapse; margin:0; padding: 0 }
+
+        table.coverage td {
+            margin: 0;
+            padding: 0;
+            color: #111;
+            vertical-align: top;
+        }
+        table.coverage td.line-count {
+            width: 50px;
+            text-align: right;
+            padding-right: 5px;
+        }
+        table.coverage td.line-coverage {
+            color: #777 !important;
+            text-align: right;
+            border-left: 1px solid #666;
+            border-right: 1px solid #666;
+        }
+
+        table.coverage td.text {
+        }
+
+        table.coverage td span.cline-any {
+            display: inline-block;
+            padding: 0 5px;
+            width: 40px;
+        }
+        table.coverage td span.cline-neutral {
+            background: #eee;
+        }
+        table.coverage td span.cline-yes {
+            background: #b5d592;
+            color: #999;
+        }
+        table.coverage td span.cline-no {
+            background: #fc8c84;
+        }
+
+        .cstat-yes { color: #111; }
+        .cstat-no { background: #fc8c84; color: #111; }
+        .fstat-no { background: #ffc520; color: #111 !important; }
+        .cbranch-no { background:  yellow !important; color: #111; }
+
+        .cstat-skip { background: #ddd; color: #111; }
+        .fstat-skip { background: #ddd; color: #111 !important; }
+        .cbranch-skip { background: #ddd !important; color: #111; }
+
+        .missing-if-branch {
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: black;
+            color: yellow;
+        }
+
+        .skip-if-branch {
+            display: none;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: #ccc;
+            color: white;
+        }
+
+        .missing-if-branch .typ, .skip-if-branch .typ {
+            color: inherit !important;
+        }
+
+        .entity, .metric { font-weight: bold; }
+        .metric { display: inline-block; border: 1px solid #333; padding: 0.3em; background: white; }
+        .metric small { font-size: 80%; font-weight: normal; color: #666; }
+
+        div.coverage-summary table { border-collapse: collapse; margin: 3em; font-size: 110%; }
+        div.coverage-summary td, div.coverage-summary table  th { margin: 0; padding: 0.25em 1em; border-top: 1px solid #666; border-bottom: 1px solid #666; }
+        div.coverage-summary th { text-align: left; border: 1px solid #666; background: #eee; font-weight: normal; }
+        div.coverage-summary th.file { border-right: none !important; }
+        div.coverage-summary th.pic { border-left: none !important; text-align: right; }
+        div.coverage-summary th.pct { border-right: none !important; }
+        div.coverage-summary th.abs { border-left: none !important; text-align: right; }
+        div.coverage-summary td.pct { text-align: right; border-left: 1px solid #666; }
+        div.coverage-summary td.abs { text-align: right; font-size: 90%; color: #444; border-right: 1px solid #666; }
+        div.coverage-summary td.file { text-align: right; border-left: 1px solid #666; white-space: nowrap;  }
+        div.coverage-summary td.pic { min-width: 120px !important;  }
+        div.coverage-summary a:link { color: #000; }
+        div.coverage-summary a:visited { color: #333; }
+        div.coverage-summary tfoot td { border-top: 1px solid #666; }
+
+        div.coverage-summary .yui3-datatable-sort-indicator, div.coverage-summary .dummy-sort-indicator {
+            height: 10px;
+            width: 7px;
+            display: inline-block;
+            margin-left: 0.5em;
+        }
+        div.coverage-summary .yui3-datatable-sort-indicator {
+            background: no-repeat scroll 0 0 transparent;
+        }
+        div.coverage-summary .yui3-datatable-sorted .yui3-datatable-sort-indicator {
+            background-position: 0 -20px;
+        }
+        div.coverage-summary .yui3-datatable-sorted-desc .yui3-datatable-sort-indicator {
+            background-position: 0 -10px;
+        }
+
+        .high { background: #b5d592 !important; }
+        .medium { background: #ffe87c !important; }
+        .low { background: #fc8c84 !important; }
+
+        span.cover-fill, span.cover-empty {
+            display:inline-block;
+            border:1px solid #444;
+            background: white;
+            height: 12px;
+        }
+        span.cover-fill {
+            background: #ccc;
+            border-right: 1px solid #444;
+        }
+        span.cover-empty {
+            background: white;
+            border-left: none;
+        }
+        span.cover-full {
+            border-right: none !important;
+        }
+        pre.prettyprint {
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .com { color: #999 !important; }
+        .ignore-none { color: #999; font-weight: normal; }
+
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1 style="font-weight: bold;">
+        <a href="https://github.com/npmtest/node-npmtest-jspm">npmtest-jspm (v0.0.1)</a>
+    </h1>
+    <h1>Code coverage report for <span class="entity">node-npmtest-jspm/jspm/lib/semver.js</span></h1>
+    <h2>
+        
+        Statements: <span class="metric">13.27% <small>(13 / 98)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Branches: <span class="metric">0% <small>(0 / 122)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Functions: <span class="metric">0% <small>(0 / 8)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Lines: <span class="metric">13.27% <small>(13 / 98)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">node-npmtest-jspm/jspm/lib/</a> &#187; semver.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/*
+ *   Copyright 2014-2015 Guy Bedford (http://guybedford.com)
+ *
+ *   Licensed under the Apache License, Version 2.0 (the "License");
+ *   you may not use this file except in compliance with the License.
+ *   You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *   Unless required by applicable law or agreed to in writing, software
+ *   distributed under the License is distributed on an "AS IS" BASIS,
+ *   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *   See the License for the specific language governing permissions and
+ *   limitations under the License.
+ */
+&nbsp;
+require('core-js/es6/string');
+&nbsp;
+var semverRegEx = /^(\d+)(?:\.(\d+)(?:\.(\d+)(?:-([\da-z-]+(?:\.[\da-z-]+)*)(?:\+([\da-z-]+(?:\.[\da-z-]+)*))?)?)?)?$/i;
+var numRegEx = /^\d+$/;
+&nbsp;
+<span class="fstat-no" title="function not covered" >function toInt(num) {</span>
+<span class="cstat-no" title="statement not covered" >  return parseInt(num, 10);</span>
+}
+&nbsp;
+<span class="fstat-no" title="function not covered" >function parseSemver(v) {</span>
+<span class="cstat-no" title="statement not covered" >  var semver = v.match(semverRegEx);</span>
+<span class="cstat-no" title="statement not covered" >  if (!semver)</span>
+<span class="cstat-no" title="statement not covered" >    return {</span>
+      tag: v
+    };
+  else
+<span class="cstat-no" title="statement not covered" >    return {</span>
+      major: toInt(semver[1]),
+      minor: toInt(semver[2]),
+      patch: toInt(semver[3]),
+      pre: semver[4] &amp;&amp; semver[4].split('.')
+    };
+}
+&nbsp;
+var parts = ['major', 'minor', 'patch'];
+<span class="fstat-no" title="function not covered" >function semverCompareParsed(v1, v2, edge) {</span>
+  // not semvers - tags have equal precedence
+<span class="cstat-no" title="statement not covered" >  if (v1.tag &amp;&amp; v2.tag)</span>
+<span class="cstat-no" title="statement not covered" >    return 0;</span>
+&nbsp;
+  // semver beats non-semver
+<span class="cstat-no" title="statement not covered" >  if (v1.tag)</span>
+<span class="cstat-no" title="statement not covered" >    return -1;</span>
+<span class="cstat-no" title="statement not covered" >  if (v2.tag)</span>
+<span class="cstat-no" title="statement not covered" >    return 1;</span>
+&nbsp;
+  // compare version numbers
+<span class="cstat-no" title="statement not covered" >  for (var i = 0; i &lt; parts.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >    var part = parts[i];</span>
+<span class="cstat-no" title="statement not covered" >    var part1 = v1[part];</span>
+<span class="cstat-no" title="statement not covered" >    var part2 = v2[part];</span>
+<span class="cstat-no" title="statement not covered" >    if (part1 === part2)</span>
+<span class="cstat-no" title="statement not covered" >      continue;</span>
+<span class="cstat-no" title="statement not covered" >    if (isNaN(part1))</span>
+<span class="cstat-no" title="statement not covered" >      return -1;</span>
+<span class="cstat-no" title="statement not covered" >    if (isNaN(part2))</span>
+<span class="cstat-no" title="statement not covered" >      return 1;</span>
+<span class="cstat-no" title="statement not covered" >    return part1 &gt; part2 ? 1 : -1;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (!v1.pre &amp;&amp; !v2.pre)</span>
+<span class="cstat-no" title="statement not covered" >    return 0;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (!v1.pre)</span>
+<span class="cstat-no" title="statement not covered" >    return edge ? 0 : 1;</span>
+<span class="cstat-no" title="statement not covered" >  if (!v2.pre)</span>
+<span class="cstat-no" title="statement not covered" >    return -1;</span>
+&nbsp;
+  // prerelease comparison
+<span class="cstat-no" title="statement not covered" >  for (var j = 0, l = Math.min(v1.pre.length, v2.pre.length); j &lt; l; j++) {</span>
+<span class="cstat-no" title="statement not covered" >    if (v1.pre[j] === v2.pre[j])</span>
+<span class="cstat-no" title="statement not covered" >      continue;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var isNum1 = v1.pre[j].match(numRegEx);</span>
+<span class="cstat-no" title="statement not covered" >    var isNum2 = v2.pre[j].match(numRegEx);</span>
+&nbsp;
+    // numeric has lower precedence
+<span class="cstat-no" title="statement not covered" >    if (isNum1 &amp;&amp; !isNum2)</span>
+<span class="cstat-no" title="statement not covered" >      return -1;</span>
+<span class="cstat-no" title="statement not covered" >    if (isNum2 &amp;&amp; !isNum1)</span>
+<span class="cstat-no" title="statement not covered" >      return 1;</span>
+&nbsp;
+    // compare parts
+<span class="cstat-no" title="statement not covered" >    if (isNum1 &amp;&amp; isNum2)</span>
+<span class="cstat-no" title="statement not covered" >      return toInt(v1.pre[j]) &gt; toInt(v2.pre[j]) ? 1 : -1;</span>
+    else
+<span class="cstat-no" title="statement not covered" >      return v1.pre[j] &gt; v2.pre[j] ? 1 : -1;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (v1.pre.length === v2.pre.length)</span>
+<span class="cstat-no" title="statement not covered" >    return 0;</span>
+&nbsp;
+  // more pre-release fields win if equal
+<span class="cstat-no" title="statement not covered" >  return v1.pre.length &gt; v2.pre.length ? 1 : -1;</span>
+}
+&nbsp;
+// match against a parsed range object
+// saves operation repetition
+// doesn't support tags
+// if not semver or fuzzy, assume exact
+<span class="fstat-no" title="function not covered" >function matchParsed(range, version, edge) {</span>
+<span class="cstat-no" title="statement not covered" >  var rangeVersion = range.version;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (rangeVersion.tag)</span>
+<span class="cstat-no" title="statement not covered" >    return rangeVersion.tag === version.tag;</span>
+&nbsp;
+  // if the version is less than the range, it's not a match
+<span class="cstat-no" title="statement not covered" >  if (semverCompareParsed(rangeVersion, version, edge) === 1)</span>
+<span class="cstat-no" title="statement not covered" >    return false;</span>
+&nbsp;
+  // now we just have to check that the version isn't too high for the range
+<span class="cstat-no" title="statement not covered" >  if (isNaN(version.minor) || isNaN(version.patch))</span>
+<span class="cstat-no" title="statement not covered" >    return false;</span>
+&nbsp;
+  // if the version has a prerelease, ensure the range version has a prerelease in it
+  // and that we match the range version up to the prerelease exactly
+<span class="cstat-no" title="statement not covered" >  if (version.pre) {</span>
+<span class="cstat-no" title="statement not covered" >    if (!edge &amp;&amp;</span>
+        !(rangeVersion.major === version.major &amp;&amp;
+          rangeVersion.minor === version.minor &amp;&amp;
+          rangeVersion.patch === version.patch))
+<span class="cstat-no" title="statement not covered" >      return false;</span>
+<span class="cstat-no" title="statement not covered" >    return range.semver || range.fuzzy || rangeVersion.pre &amp;&amp; rangeVersion.pre.join('.') === version.pre.join('.');</span>
+  }
+&nbsp;
+  // check semver range
+<span class="cstat-no" title="statement not covered" >  if (range.semver) {</span>
+    // ^0
+<span class="cstat-no" title="statement not covered" >    if (rangeVersion.major === 0 &amp;&amp; isNaN(rangeVersion.minor))</span>
+<span class="cstat-no" title="statement not covered" >      return version.major &lt; 1;</span>
+    // ^1..
+    else <span class="cstat-no" title="statement not covered" >if (rangeVersion.major &gt;= 1)</span>
+<span class="cstat-no" title="statement not covered" >      return rangeVersion.major === version.major;</span>
+    // ^0.1, ^0.2
+    else <span class="cstat-no" title="statement not covered" >if (rangeVersion.minor &gt;= 1)</span>
+<span class="cstat-no" title="statement not covered" >      return version.major === 0 &amp;&amp; rangeVersion.minor === version.minor;</span>
+    // ^0.0.x falls down to exact match below
+  }
+&nbsp;
+  // check fuzzy range (we can assume rangeVersion.minor exists, due to behaviour switch)
+<span class="cstat-no" title="statement not covered" >  if (range.fuzzy)</span>
+<span class="cstat-no" title="statement not covered" >    return version.major === rangeVersion.major &amp;&amp; version.minor &lt;= rangeVersion.minor;</span>
+&nbsp;
+  // exact match
+  // eg 001.002.003 matches 1.2.3
+<span class="cstat-no" title="statement not covered" >  return !rangeVersion.pre &amp;&amp; rangeVersion.major === version.major &amp;&amp; rangeVersion.minor === version.minor &amp;&amp; rangeVersion.patch === version.patch;</span>
+}
+&nbsp;
+/*
+ * semver       - is this a semver range
+ * fuzzy        - is this a fuzzy range
+ * version      - the parsed version object
+ */
+<span class="fstat-no" title="function not covered" >function parseRange(range) {</span>
+<span class="cstat-no" title="statement not covered" >  var rangeObj = {};</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  ((rangeObj.semver = range.startsWith('^')) ||</span>
+      (rangeObj.fuzzy = range.startsWith('~'))
+  ) &amp;&amp; (range = range.substr(1)); // jshint ignore:line
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  var rangeVersion = rangeObj.version = parseSemver(range);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (rangeVersion.tag)</span>
+<span class="cstat-no" title="statement not covered" >    return rangeObj;</span>
+&nbsp;
+  // 0, 0.1 behave like ~0, ~0.1
+<span class="cstat-no" title="statement not covered" >  if (!rangeObj.fuzzy &amp;&amp; !rangeObj.semver &amp;&amp; (isNaN(rangeVersion.minor) || isNaN(rangeVersion.patch)))</span>
+<span class="cstat-no" title="statement not covered" >    rangeObj.fuzzy = true;</span>
+&nbsp;
+  // ~1, ~0 behave like ^1, ^0
+<span class="cstat-no" title="statement not covered" >  if (rangeObj.fuzzy &amp;&amp; isNaN(rangeVersion.minor)) {</span>
+<span class="cstat-no" title="statement not covered" >    rangeObj.semver = true;</span>
+<span class="cstat-no" title="statement not covered" >    rangeObj.fuzzy = false;</span>
+  }
+&nbsp;
+  // ^0.0 behaves like ~0.0
+<span class="cstat-no" title="statement not covered" >  if (rangeObj.semver &amp;&amp; rangeObj.major === 0 &amp;&amp; !isNaN(rangeVersion.minor) &amp;&amp; isNaN(rangeVersion.patch)) {</span>
+<span class="cstat-no" title="statement not covered" >    rangeObj.semver = false;</span>
+<span class="cstat-no" title="statement not covered" >    rangeObj.fuzzy = true;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return rangeObj;</span>
+}
+&nbsp;
+exports.semverRegEx = semverRegEx;
+&nbsp;
+exports.compare = <span class="fstat-no" title="function not covered" >function(v1, v2) {</span>
+<span class="cstat-no" title="statement not covered" >  return semverCompareParsed(parseSemver(v1), parseSemver(v2));</span>
+};
+&nbsp;
+exports.match = <span class="fstat-no" title="function not covered" >function match(range, version) {</span>
+  // supported range types:
+  // 0.2, 1, ~1.2.3, ^1.2.3, ^0.4.3-alpha.1
+<span class="cstat-no" title="statement not covered" >  if (range === '' || range === '*')</span>
+<span class="cstat-no" title="statement not covered" >    return true;</span>
+<span class="cstat-no" title="statement not covered" >  return matchParsed(parseRange(range), parseSemver(version));</span>
+};
+&nbsp;
+exports.matchUnstable = <span class="fstat-no" title="function not covered" >function match(range, version) {</span>
+  // supported range types:
+  // 0.2, 1, ~1.2.3, ^1.2.3, ^0.4.3-alpha.1
+<span class="cstat-no" title="statement not covered" >  if (range === '' || range === '*')</span>
+<span class="cstat-no" title="statement not covered" >    return true;</span>
+<span class="cstat-no" title="statement not covered" >  return matchParsed(parseRange(range), parseSemver(version), true);</span>
+};
+&nbsp;
+&nbsp;</pre></td></tr>
+</table></pre>
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Tue Apr 11 2017 18:36:56 GMT+0000 (UTC)</div>
+</div>
+</body>
+</html>

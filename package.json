@@ -1,1 +1,40 @@
-{     "devDependencies": {         "jspm": "*",         "electron-lite": "kaizhu256/node-electron-lite#alpha",         "utility2": "kaizhu256/node-utility2#alpha"     },     "name":"npmtest-jspm",     "homepage": "https://github.com/npmtest/node-npmtest-jspm",     "repository": {         "type": "git",         "url": "https://github.com/npmtest/node-npmtest-jspm.git"     },     "scripts": {         "build-ci": "utility2 shReadmeTest build_ci.sh"     },     "version": "0.0.1" }
+{
+    "author": "kai zhu <kaizhu256@gmail.com>",
+    "description": "test coverage for [jspm (v0.16.53)](https://github.com/jspm/jspm) [![npm package](https://img.shields.io/npm/v/npmtest-jspm.svg?style=flat-square)](https://www.npmjs.org/package/npmtest-jspm) [![travis-ci.org build-status](https://api.travis-ci.org/npmtest/node-npmtest-jspm.svg)](https://travis-ci.org/npmtest/node-npmtest-jspm)",
+    "devDependencies": {
+        "electron-lite": "kaizhu256/node-electron-lite#alpha",
+        "jspm": "*",
+        "utility2": "kaizhu256/node-utility2#alpha"
+    },
+    "engines": {
+        "node": ">=4.0"
+    },
+    "homepage": "https://github.com/npmtest/node-npmtest-jspm",
+    "keywords": [
+        "coverage",
+        "test",
+        "jspm"
+    ],
+    "license": "MIT",
+    "main": "lib.npmtest_jspm.js",
+    "name": "npmtest-jspm",
+    "nameAlias": "npmtest_jspm",
+    "nameOriginal": "npmtest-jspm",
+    "os": [
+        "darwin",
+        "linux"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/npmtest/node-npmtest-jspm.git"
+    },
+    "scripts": {
+        "build-ci": "utility2 shReadmeTest build_ci.sh",
+        "env": "env",
+        "heroku-postbuild": "(set -e; npm install \"kaizhu256/node-utility2#alpha\"; utility2 shDeployHeroku)",
+        "postinstall": "if [ -f npm_scripts.sh ]; then ./npm_scripts.sh postinstall; fi",
+        "start": "(set -e; export PORT=${PORT:-8080}; utility2 start test.js)",
+        "test": "(set -e; export PORT=$(utility2 shServerPortRandom); utility2 test test.js)"
+    },
+    "version": "0.0.1"
+}

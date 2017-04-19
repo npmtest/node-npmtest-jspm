@@ -1,7 +1,10 @@
-# test coverage for  [jspm (v0.16.53)](https://github.com/jspm/jspm)  [![npm package](https://img.shields.io/npm/v/npmtest-jspm.svg?style=flat-square)](https://www.npmjs.org/package/npmtest-jspm) [![travis-ci.org build-status](https://api.travis-ci.org/npmtest/node-npmtest-jspm.svg)](https://travis-ci.org/npmtest/node-npmtest-jspm)
+# npmtest-jspm
+
+#### test coverage for  [jspm (v0.16.53)](https://github.com/jspm/jspm)  [![npm package](https://img.shields.io/npm/v/npmtest-jspm.svg?style=flat-square)](https://www.npmjs.org/package/npmtest-jspm) [![travis-ci.org build-status](https://api.travis-ci.org/npmtest/node-npmtest-jspm.svg)](https://travis-ci.org/npmtest/node-npmtest-jspm)
+
 #### Registry and format agnostic JavaScript package manager
 
-[![NPM](https://nodei.co/npm/jspm.png?downloads=true)](https://www.npmjs.com/package/jspm)
+[![NPM](https://nodei.co/npm/jspm.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/jspm)
 
 | git-branch : | [alpha](https://github.com/npmtest/node-npmtest-jspm/tree/alpha)|
 |--:|:--|
@@ -9,11 +12,17 @@
 | test-report : | [![test-report](https://npmtest.github.io/node-npmtest-jspm/build/test-report.badge.svg)](https://npmtest.github.io/node-npmtest-jspm/build/test-report.html)|
 | build-artifacts : | [![build-artifacts](https://npmtest.github.io/node-npmtest-jspm/glyphicons_144_folder_open.png)](https://github.com/npmtest/node-npmtest-jspm/tree/gh-pages/build)|
 
-[![istanbul-coverage](https://npmtest.github.io/node-npmtest-jspm/build/screenCapture.buildCustomOrg.browser.coverage.html.png)](https://npmtest.github.io/node-npmtest-jspm/build/coverage.html/index.html)
+- [https://npmtest.github.io/node-npmtest-jspm/build/coverage.html/index.html](https://npmtest.github.io/node-npmtest-jspm/build/coverage.html/index.html)
 
-[![test-report](https://npmtest.github.io/node-npmtest-jspm/build/screenCapture.buildCustomOrg.browser.%252Fhome%252Ftravis%252Fbuild%252Fnpmtest%252Fnode-npmtest-jspm%252Ftmp%252Fbuild%252Ftest-report.html.png)](https://npmtest.github.io/node-npmtest-jspm/build/test-report.html)
+[![istanbul-coverage](https://npmtest.github.io/node-npmtest-jspm/build/screenCapture.buildCi.browser.%252Ftmp%252Fbuild%252Fcoverage.lib.html.png)](https://npmtest.github.io/node-npmtest-jspm/build/coverage.html/index.html)
 
-[![apidoc](https://npmdoc.github.io/node-npmdoc-jspm/build/screenCapture.buildApidoc.browser.%252Fhome%252Ftravis%252Fbuild%252Fnpmdoc%252Fnode-npmdoc-jspm%252Ftmp%252Fbuild%252Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-jspm/build/apidoc.html)
+- [https://npmtest.github.io/node-npmtest-jspm/build/test-report.html](https://npmtest.github.io/node-npmtest-jspm/build/test-report.html)
+
+[![test-report](https://npmtest.github.io/node-npmtest-jspm/build/screenCapture.buildCi.browser.%252Ftmp%252Fbuild%252Ftest-report.html.png)](https://npmtest.github.io/node-npmtest-jspm/build/test-report.html)
+
+- [https://npmdoc.github.io/node-npmdoc-jspm/build/apidoc.html](https://npmdoc.github.io/node-npmdoc-jspm/build/apidoc.html)
+
+[![apidoc](https://npmdoc.github.io/node-npmdoc-jspm/build/screenCapture.buildCi.browser.%252Ftmp%252Fbuild%252Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-jspm/build/apidoc.html)
 
 ![npmPackageListing](https://npmtest.github.io/node-npmtest-jspm/build/screenCapture.npmPackageListing.svg)
 
@@ -84,13 +93,11 @@
     "main": "./api.js",
     "maintainers": [
         {
-            "name": "guybedford",
-            "email": "guybedford@gmail.com"
+            "name": "guybedford"
         }
     ],
     "name": "jspm",
     "optionalDependencies": {},
-    "readme": "ERROR: No README data found!",
     "registry": "npm",
     "repository": {
         "type": "git",
